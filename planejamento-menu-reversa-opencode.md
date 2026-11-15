@@ -3,7 +3,7 @@
 > Documento de planejamento.
 > Repositório alvo: `https://github.com/JosehRoberto/menu-reversa-opencode`
 > Data: 2026-11-15
-> Status: **Proposto** — aguardando aprovação.
+> Status: **Implementado** — v1.0.0 publicada em 2026-11-15.
 
 ## 1. Objetivo
 
@@ -123,9 +123,24 @@ Migrar o `menu-reversa-opencode` do modelo atual (scripts shell embutidos no REA
 - Testes de determinismo passando; lint limpo.
 - Release `v1.0.0` tagueada com script anexado.
 
-## 12. Próximo passo sugerido
+## 12. Status de implementação
 
-Aprovar este plano e iniciar pela **Fase 1** (núcleo `menu-reversa.py`), reaproveitando o código do `menu-mira-opencode` v1.0.0, com as decisões da seção 4.
+**Concluído — v1.0.0 (2026-11-15).** Todos os critérios de conclusão foram atendidos.
+
+| Fase | Entrega | Situação |
+|---|---|---|
+| 0 | Decisões e escopo | Concluída |
+| 1 | `menu-reversa.py` (install/sync) | Concluída |
+| 2 | Wrappers `bin/*.sh` e `bin/*.ps1` | Concluída |
+| 3 | README reescrito (por SO, versão fixada) | Concluída |
+| 4 | Testes (17, unittest + determinismo) | Concluída |
+| 5 | Tag/Release `v1.0.0` + `CHANGELOG.md` | Concluída |
+
+- Repositório alvo: commit `1c6c633` + tag `v1.0.0`.
+- Release: <https://github.com/JosehRoberto/menu-reversa-opencode/releases/tag/v1.0.0>
+- Decisões aplicadas: PyYAML + `json.dumps`; `agent: general`; gerenciamento de `.opencode/` no `.gitignore`.
+- Sem churn: comandos gerados byte-idênticos aos da versão anterior.
+- Pendência: validar `bin/*.ps1` em máquina Windows real.
 
 ## 13. Validação contra a instalação real (`teste-reversa-inicial`)
 

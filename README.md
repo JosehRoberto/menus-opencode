@@ -27,7 +27,7 @@ Exemplo: `planejamento-menu-antares-opencode.md`.
 |---|---|---|
 | `planejamento-menu-antares-opencode.md` | `menu-antares-opencode` | Implementado — v1.0.0 |
 | `planejamento-menu-mira-opencode.md` | `menu-mira-opencode` | Implementado — v1.0.0 |
-| `planejamento-menu-reversa-opencode.md` | `menu-reversa-opencode` | Proposto |
+| `planejamento-menu-reversa-opencode.md` | `menu-reversa-opencode` | Implementado — v1.0.0 |
 
 ## Fluxo de trabalho
 
