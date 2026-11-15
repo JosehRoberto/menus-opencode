@@ -3,7 +3,7 @@
 > Documento de planejamento.
 > Repositório alvo: `https://github.com/JosehRoberto/menu-reversa-openclaude`
 > Data: 2026-11-15
-> Status: **Proposto** — aguardando aprovação.
+> Status: **Implementado** — v1.0.0 publicada e testada em 2026-11-15.
 
 ## 1. Objetivo
 
@@ -122,6 +122,20 @@ Migrar o `menu-reversa-openclaude` do modelo atual (scripts shell embutidos no R
 - Testes de determinismo passando; lint limpo.
 - Release `v1.0.0` tagueada com script anexado.
 
-## 11. Próximo passo sugerido
+## 11. Status de implementação
 
-Aprovar este plano e iniciar pela **Fase 1** (núcleo `menu-reversa-openclaude.py`), reaproveitando a estrutura de wrappers/testes dos menus anteriores, mas adaptando a operação para **symlinks** (com fallback de cópia).
+**Concluído — v1.0.0 (2026-11-15).** Todos os critérios de conclusão foram atendidos. **Testado com sucesso** em `/home/roberto/projetos/teste-reversa-openclaude`.
+
+| Fase | Entrega | Situação |
+|---|---|---|
+| 0 | Decisões e escopo | Concluída |
+| 1 | `menu-reversa-openclaude.py` (install/sync via symlink) | Concluída |
+| 2 | Wrappers `bin/*.sh` e `bin/*.ps1` | Concluída |
+| 3 | README reescrito (por SO, versão fixada) | Concluída |
+| 4 | Testes (13, unittest + determinismo) | Concluída |
+| 5 | Tag/Release `v1.0.0` + `CHANGELOG.md` | Concluída |
+
+- Repositório alvo: commit `98ee4f3` + tag `v1.0.0`.
+- Release: <https://github.com/JosehRoberto/menu-reversa-openclaude/releases/tag/v1.0.0>
+- Decisões aplicadas: bridge por **symlink** com fallback `--copy`; escopo `--global`; sem PyYAML.
+- Pendência: em Windows, symlink exige Developer Mode/admin (usar `--copy`); validar `bin/*.ps1` em máquina Windows real.
