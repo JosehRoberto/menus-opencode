@@ -26,7 +26,7 @@ Exemplo: `planejamento-menu-antares-opencode.md`.
 | Arquivo | Repositório alvo | Status |
 |---|---|---|
 | `planejamento-menu-antares-opencode.md` | `menu-antares-opencode` | Implementado — v1.0.0 |
-| `planejamento-menu-mira-opencode.md` | `menu-mira-opencode` | Proposto |
+| `planejamento-menu-mira-opencode.md` | `menu-mira-opencode` | Implementado — v1.0.0 |
 
 ## Fluxo de trabalho
 

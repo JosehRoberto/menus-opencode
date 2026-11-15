@@ -3,7 +3,7 @@
 > Documento de planejamento.
 > Repositório alvo: `https://github.com/JosehRoberto/menu-mira-opencode`
 > Data: 2026-11-15
-> Status: **Proposto** — aguardando aprovação.
+> Status: **Implementado** — v1.0.0 publicada em 2026-11-15.
 
 ## 1. Objetivo
 
@@ -122,6 +122,20 @@ Mesma do Antares:
 - Testes de determinismo passando; lint limpo.
 - Release `v1.0.0` tagueada com script anexado.
 
-## 12. Próximo passo sugerido
+## 12. Status de implementação
 
-Aprovar este plano e iniciar pela **Fase 1** (núcleo `menu-mira.py`), reaproveitando o código do `menu-antares-opencode` v1.0.0.
+**Concluído — v1.0.0 (2026-11-15).** Todos os critérios de conclusão foram atendidos.
+
+| Fase | Entrega | Situação |
+|---|---|---|
+| 0 | Decisões e escopo | Concluída |
+| 1 | `menu-mira.py` (install/sync) | Concluída |
+| 2 | Wrappers `bin/*.sh` e `bin/*.ps1` | Concluída |
+| 3 | README reescrito (por SO, versão fixada) | Concluída |
+| 4 | Testes (16, unittest + determinismo) | Concluída |
+| 5 | Tag/Release `v1.0.0` + `CHANGELOG.md` | Concluída |
+
+- Repositório alvo: commit `2fc1f2e` + tag `v1.0.0`.
+- Release: <https://github.com/JosehRoberto/menu-mira-opencode/releases/tag/v1.0.0>
+- Padronização aplicada: serialização com `json.dumps` e frontmatter alinhado ao `menu-antares-opencode`.
+- Pendência: validar `bin/*.ps1` em máquina Windows real.
