@@ -18,7 +18,8 @@ Migrar o `menu-reversa-opencode` do modelo atual (scripts shell embutidos no REA
 | Prefixos cobertos | `reversa-*` e `reversa` |
 | Agente do frontmatter | `agent: general` |
 | Leitura da `description` | `grep -m1 '^description:'` + `sed` — **não usa PyYAML** |
-| `description: >-` (multi-linha) | **Não é tratada** (capturaria lixo/só o `>-`) |
+| `description: >-` (multi-linha) | Não ocorre hoje (0 de 77); o `grep`/`sed` **não** saberia tratar se passasse a ocorrer |
+| Estilo das descrições | Escalares YAML simples ou com aspas simples/duplas (contendo `:`, `—`, `"`); PyYAML normaliza todos |
 | `.gitignore` | **Não há gerenciamento** (não adiciona `.opencode/`) |
 | Execução | Agente reinterpreta/traduz por SO |
 | Interatividade | Sim (`read ... [y/N]`) → inviabiliza execução automatizada |
@@ -37,11 +38,11 @@ Migrar o `menu-reversa-opencode` do modelo atual (scripts shell embutidos no REA
 
 ## 4. Divergências a resolver (decisões)
 
-1. **Adotar PyYAML + `json.dumps`** para a descrição (como Antares/Mira), substituindo `grep`/`sed`. Isso **corrige** o caso `description: >-` (hoje quebrado) e o escaping frágil de aspas/barras.
+1. **Adotar PyYAML + `json.dumps`** para a descrição (como Antares/Mira), substituindo `grep`/`sed`. Robusto para escalares com aspas e, se surgirem, `description: >-` multi-linha. **Validado:** para os 77 skills atuais a saída é **byte-idêntica** à atual (ver seção 5).
 2. **Passar a gerenciar `.opencode/` no `.gitignore`** (idempotente), com flag `--keep-gitignore` para desativar — alinhando ao comportamento dos outros menus.
 3. **Manter `agent: general`** no frontmatter gerado.
 
-**Impacto:** comandos já gerados podem mudar de bytes (descrição corrigida + eventual entrada no `.gitignore`), então o primeiro `sync` pode propor atualização — com **backup automático**. Documentar no README/CHANGELOG.
+**Impacto:** nenhum churn nos **comandos** gerados (saída idêntica). A única mudança observável é a nova entrada `.opencode/` no `.gitignore`, que pode ser evitada com `--keep-gitignore`. O primeiro `sync` não deve propor atualização de comandos.
 
 ## 5. Arquitetura-alvo
 
@@ -125,3 +126,26 @@ Migrar o `menu-reversa-opencode` do modelo atual (scripts shell embutidos no REA
 ## 12. Próximo passo sugerido
 
 Aprovar este plano e iniciar pela **Fase 1** (núcleo `menu-reversa.py`), reaproveitando o código do `menu-mira-opencode` v1.0.0, com as decisões da seção 4.
+
+## 13. Validação contra a instalação real (`teste-reversa-inicial`)
+
+Análise feita sobre uma instalação real do Reversa em `/home/roberto/projetos/teste-reversa-inicial/.agents/skills`:
+
+| Verificação | Resultado |
+|---|---|
+| Total de skills (`*/SKILL.md`) | 78 |
+| Skills que casam com `reversa*` | **77** (`reversa` + 76 `reversa-*`) |
+| Skills fora do prefixo (ignoradas) | 1 (`impeccable`) |
+| Skills com `description: >-` / `\|` (multi-linha) | **0** |
+| Descrições com `: ` no valor | 33 (protegidas por aspas simples/duplas no YAML) |
+| Descrições com aspas duplas | 18 (7 iniciando com aspas) |
+| Descrições com backslash | 0 |
+| Skills sem `description` | 0 |
+| `yaml.safe_load` do frontmatter | **77/77 OK** (sem erros) |
+| Saída do núcleo proposto (PyYAML + `json.dumps`) vs. script atual (`grep`/`sed`) | **77/77 byte-idênticas** |
+
+Conclusões:
+- A migração para **PyYAML + `json.dumps` é segura** e **não altera** os comandos gerados para os skills atuais (nenhum churn).
+- PyYAML é a escolha robusta: lida corretamente com escalares com aspas e com futuras descrições multi-linha.
+- `impeccable` (sem prefixo `reversa`) é corretamente ignorado pelo filtro.
+
