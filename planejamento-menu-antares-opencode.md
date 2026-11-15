@@ -1,8 +1,9 @@
 # Planejamento estratégico — menu-antares-opencode
 
-> Documento de planejamento. Nenhuma implementação foi iniciada.
+> Documento de planejamento.
 > Repositório alvo: `https://github.com/JosehRoberto/menu-antares-opencode`
 > Data: 2026-11-15
+> Status: **Implementado** — v1.0.0 publicada em 2026-11-15.
 
 ## 1. Objetivo
 
@@ -102,6 +103,19 @@ Sair do modelo atual (prosa interpretada pelo agente → resultado probabilísti
 - Teste de determinismo passando; lint limpo.
 - Release tagueada com script anexado.
 
-## 9. Próximo passo sugerido
+## 9. Status de implementação
 
-Aprovar este plano e iniciar pela **Fase 1** (núcleo Python), que concentra o ganho de determinismo.
+**Concluído — v1.0.0 (2026-11-15).** Todos os critérios de conclusão foram atendidos.
+
+| Fase | Entrega | Situação |
+|---|---|---|
+| 0 | Decisões e escopo | Concluída |
+| 1 | `menu-antares.py` (install/sync) | Concluída |
+| 2 | Wrappers `bin/*.sh` e `bin/*.ps1` | Concluída |
+| 3 | README reescrito (por SO, versão fixada) | Concluída |
+| 4 | Testes (15, unittest + determinismo) | Concluída |
+| 5 | Tag/Release `v1.0.0` + `CHANGELOG.md` | Concluída |
+
+- Repositório alvo: commit `9f2508c` + tag `v1.0.0`.
+- Release: <https://github.com/JosehRoberto/menu-antares-opencode/releases/tag/v1.0.0>
+- Pendência: validar `bin/*.ps1` em máquina Windows real.
